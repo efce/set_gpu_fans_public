@@ -51,16 +51,15 @@ sar=(`eval ${pciid}`)
 gpuid=`lspci  | sed -n -e '/VGA compatib.*NVIDIA/s/^\(..\):\(..\).\(.\).*/\1:\2.\3/p'`
 sgar=(${gpuid})
 for i in "${!sar[@]}"; do
-    cfg=`mktemp /tmp/xorg-XXXXXXXX.conf`
+    cfg="xorg.fans_${sar[$i]}.conf"
     sed -e s,@GPU_BUS_ID@,${sar[$i]},    \
         -e s,@SET_GPU_DIR@,${dir}, \
-        ${dir}/xorg.conf >> ${cfg}
+        ${dir}/xorg.conf >> /etc/X11/${cfg}
     # we keep one X server per GPU running indefinitely
     # (if we let the X server die, the fan config does not persist, no matter what else)
     xinit ${dir}/nvscmd ${sgar[$i]} run_forever -- :${disp} -once -config ${cfg} &
     echo "xinit ${dir}/nvscmd ${sgar[$i]} run_forever -- :${disp} -once -config ${cfg}"
     disp=$((disp+1))
     sleep 10
-    rm -f ${cfg}
 done
 
