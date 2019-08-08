@@ -95,7 +95,7 @@ loop:
 
     if ($target == -3) then
         # execute heuristic
-        set foo = (`/opt/bin/nvidia-smi dmon -s p -c 1 ${gpuid}| tail -1`)
+        set foo = (`/usr/bin/nvidia-smi dmon -s p -c 1 ${gpuid}| tail -1`)
         @ temp = $foo[3]
         @ target = -2
         if (${temp} < 30) then
@@ -132,7 +132,7 @@ loop:
             @ target = 90
 	endif
         if (${temp} >= 77) then
-            @ target = 95
+            @ target = 98
         endif
         if (${target} == -2 || ${target} == ${last_target} || ${target} == ${last_friendly_target}) then
             echo "Current temperature is ${temp}.  No adjustments needed."
@@ -176,5 +176,4 @@ loop:
 if ( ${run_forever} == 1 ) then
     goto loop
 endif
-
 

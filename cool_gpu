@@ -37,9 +37,9 @@
 # to eek out a few percent more perf with very noticeable but still
 # tolerable fan noise).
 
-dir=/home/liuk/src/set_gpu_fans_public
+dir=/opt/set-gpu-fans
 
-/opt/bin/nvidia-smi -pm 1
+/usr/bin/nvidia-smi -pm 1
 
 # we need to launch the X server once for each display
 # making each of the PCI IDs the primary device in turn.

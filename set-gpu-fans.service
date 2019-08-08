@@ -1,10 +1,16 @@
 [Unit]
 Description=Cool GPU
+After=network.target
 
 [Service]
+User=root
+Group=syzyf
+Type=simple
 ExecStart=/opt/set-gpu-fans/cool_gpu
-Restart=always
+ExecStop=/usr/bin/killall cool_gpu nvscmd
+Restart=on-failure
+Restart-sec=2
 
 [Install]
-Alias=set-gpu-fans.service
+WantedBy=multi-user.target
 
