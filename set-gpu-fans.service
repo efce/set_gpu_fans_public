@@ -1,0 +1,10 @@
+[Unit]
+Description=Cool GPU
+
+[Service]
+ExecStart=/opt/set-gpu-fans/cool_gpu
+Restart=always
+
+[Install]
+Alias=set-gpu-fans.service
+
