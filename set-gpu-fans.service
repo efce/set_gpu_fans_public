@@ -7,7 +7,7 @@ User=root
 Group=syzyf
 Type=simple
 ExecStart=/opt/set-gpu-fans/cool_gpu
-ExecStop=/usr/bin/killall cool_gpu nvscmd
+ExecStop=/usr/bin/killall cool_gpu nvscmd Xorg
 Restart=on-failure
 Restart-sec=2
 
