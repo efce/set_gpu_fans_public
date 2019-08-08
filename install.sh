@@ -10,8 +10,10 @@ if [ "$(id -u)" -ne 0 ]; then
 	exit 1
 fi
 
-dir=/opt/set-gpu-fans/
+dir="/opt/set-gpu-fans/"
 mkdir -p ${dir}
-cp ./{cool_gpu,README.md,dfp-edid.bin,nvscmd,xorg.conf} ${dir}
-cp ./set-gpu-fans.service /etc/systemd/system/
+cp -f ./{cool_gpu,README.md,dfp-edid.bin,nvscmd,xorg.conf} ${dir}
+cp -f ./set-gpu-fans.service /etc/systemd/system/
+chmod 755 ${dir}/cool_gpu
+chmod 755 ${dir}/nvscmd
 systemctl daemon-reload
