@@ -37,6 +37,8 @@
 # to eek out a few percent more perf with very noticeable but still
 # tolerable fan noise).
 
+killall Xorg
+
 dir=/opt/set-gpu-fans
 
 /usr/bin/nvidia-smi -pm 1
