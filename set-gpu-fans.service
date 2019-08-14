@@ -4,12 +4,10 @@ After=network.target
 
 [Service]
 User=root
-Group=syzyf
-Type=simple
+Type=forking
+StandardOutput=journal
 ExecStart=/opt/set-gpu-fans/cool_gpu
 ExecStop=/usr/bin/killall cool_gpu nvscmd Xorg
-Restart=on-failure
-Restart-sec=2
 
 [Install]
 WantedBy=multi-user.target
